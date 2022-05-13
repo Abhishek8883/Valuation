@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="/"><button>Back</button></a>
+    <h2>Create User</h2>
+    <form id="myform"  name="userForm" action="/createUser" method="post">
+        <input type="text" placeholder="Name" name="name" >
+        <input  type="email" placeholder="email" name="email" >
+        <input  type="Number" placeholder="Mobile No." name="mobile" >
+        <input id="id" type="Number" placeholder="Id" name="id" required>
+        <input type="Submit" onclick="check(document.userForm.email,document.userForm.mobile)">
+    </form>
+
+
+    <script>
+
+        function check(inputText,input_str){
+            event.preventDefault()
+
+
+            if(ValidateEmail(inputText) && validatePhoneNumber(input_str) && validateId()){
+                document.getElementById('myform').submit()
+                alert("User added successfully.")
+            }
+            function validateId(){
+                if(!document.querySelector('#id').value){
+                    alert("Id is required")
+                    return false
+                }
+                else{
+                    return true
+                }
+            }
+
+             
+
+            function ValidateEmail(inputText) {
+                var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                if (inputText.value.match(mailformat)) {
+                    return true;
+                }
+                else {
+                    alert("You have entered an invalid email address!");
+                    return false;
+                }
+            }
+    
+    
+            function validatePhoneNumber(input_str) {
+                var re = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+                if (input_str.value.match(re)) {
+                    return true;
+                }
+                else {
+                    alert("You have entered an invalid phone number!");
+                    return false;
+                }
+            }
+          }
+    </script>
+</body>
+
+</html>

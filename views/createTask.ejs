@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/"><button>Back</button></a>
+    <br>
+    <br>
+    <form id="myform" action="/addNewTask" method="post">
+        <select id="selectValue" name="userid" >
+            <option value="" disabled selected>Select User by Id</option>
+        <% userData.forEach(function(dets){ %>
+                   <option value=<%= dets.id %>><%= dets.id %></option>
+                   <% }) %>
+        </select> 
+        <br>  
+        <br>  
+        <input id="taskNameValue" type="text " placeholder="Task Name" name="taskName">
+        <br>    
+        <br>   
+        <input id="typeValue" type="radio" name="taskType" value="Pending" Checked>Pending
+        <input id="typeValue" type="radio" name="taskType" value="Done">Done
+        <br>
+        <br>
+        <input type="submit" onclick="validateForm()">
+    </form>  
+
+    <script>
+
+        function validateForm(){
+            event.preventDefault()
+
+            var selectValue = document.querySelector('#selectValue').value
+            var taskNameValue = document.querySelector('#taskNameValue').value
+            var typeValue = document.querySelector('#typeValue').value
+            console.log(typeValue)
+
+            if(selectValue && taskNameValue){
+                alert("Task added Successfully")
+                document.querySelector('#myform').submit()
+            }
+            else{
+                alert("All fields are mandatory")
+            }
+        }
+    </script>
+</body>
+</html>
